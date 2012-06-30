@@ -1,53 +1,51 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    
     <groupId>com.messagegears</groupId>
-    <artifactId>messagegears-sdk</artifactId>
+    <artifactId>messagegears-java-sdk</artifactId>
     <version>3.1.10-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>messagegears-sdk</name>
+    <name>messagegears-java-sdk</name>
+    <description>MessageGears Java SDK</description>
     <url>http://messagegears.com</url>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://aws.amazon.com/apache2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/messagegears/messagegears-java-sdk.git</url>
+        <connection>scm:git:git://github.com/messagegears/messagegears-java-sdk.git</connection>
+        <developerConnection>scm:git:git://github.com:messagegears/messagegears-java-sdk.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>messagegears</id>
+            <organization>MessageGears</organization>
+            <organizationUrl>http://messagegears.com</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <properties>
-        <distributionName>messagegears-sdk</distributionName>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <scm>
-        <connection>scm:svn:https://emailabove.jira.com/svn/JAVASDK/trunk</connection>
-        <developerConnection>scm:svn:https://emailabove.jira.com/svn/JAVASDK/trunk</developerConnection>
-        <url>https://emailabove.jira.com/svn/JAVASDK/trunk</url>
-    </scm>
-    
-    <distributionManagement>
-        <repository>
-            <id>sdk-public-repository</id>
-            <name>SDK Releases Repository</name>
-            <url>scpexe://www.messagegears.com/var/www/html/maven2</url>
-            <uniqueVersion>false</uniqueVersion>
-        </repository>
-        <snapshotRepository>
-            <id>sdk-public-repository</id>
-            <name>SDK Snapshots Repository</name>
-            <url>scpexe://www.messagegears.com/var/www/html/maven2</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
-        <site>
-            <id>sdk-public-repository</id>
-            <url>scpexe://www.messagegears.com/var/www/html/javadoc</url>
-        </site>
-    </distributionManagement>
-
     <build>
-        <extensions>
-            <!-- Enabling the use of SSH/SCP -->
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh-external</artifactId>
-                <version>2.2</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -94,25 +92,14 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2-beta-5</version>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/assembly/dist.xml</descriptor>
-                    </descriptors>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <!-- 
-                        TODO: ssh wagon copy the assembly to a static web location 
-                        instead of stuffing it into the maven repo
-                     -->
-                    <finalName>${distributionName}-${project.version}</finalName>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>dist</id>
-                        <phase>package</phase>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>attached</goal>
+                            <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>
