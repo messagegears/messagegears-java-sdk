@@ -74,26 +74,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <excludePackageNames>com.messagegears.generated*</excludePackageNames>
-                    <overview>src/main/java/com/messagegears/sdk/overview.html</overview>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <configuration>
-                    <username>${svn.username}</username>
-                    <password>${svn.password}</password>
-                    <tagBase>https://emailabove.jira.com/svn/JAVASDK/tags</tagBase>
-                    <preparationGoals>clean install</preparationGoals>
-                    <goals>deploy</goals>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -104,6 +87,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0-beta-3</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>2.7</version>
+                            <configuration>
+                                <excludePackageNames>com.messagegears.sdk.v*</excludePackageNames>
+                                <overview>src/main/java/com/messagegears/sdk/overview.html</overview>
+                            </configuration>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
+            </plugin>
+            
         </plugins>
         <pluginManagement>
             <plugins>
