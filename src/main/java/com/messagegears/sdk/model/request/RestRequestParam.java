@@ -21,6 +21,7 @@ public enum RestRequestParam {
     HEADER_NAME("HeaderName", "The name of the header to be included in the message."),
     HEADER_VALUE("HeaderValue", "The value of the header to be included in the message."),
     HTML_TEMPLATE("HtmlTemplate", "The html template content of the message."),
+    JOB_CATEGORY("JobCategory", "Specify a job category to help map this request back to your system."),
     NAME("Name","The name of the subaccount being referenced."),
     NOTIFICATION_EMAIL_ADDRESS("NotificationEmailAddress", "The email address that JobError notifications will be sent to."),
     RECIPIENT_LIST_XML_URL("RecipientListXmlUrl", "The URL to the recipient list to be used with a bulk job submit."),

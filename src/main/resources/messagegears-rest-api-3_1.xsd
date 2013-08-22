@@ -250,6 +250,7 @@
                 <xsd:element name="UserAgent" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="Microsite" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -267,6 +268,7 @@
                 <xsd:element name="UrlName" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="Microsite" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -282,6 +284,7 @@
                 <xsd:element name="UserAgent" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="Microsite" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -299,6 +302,7 @@
                 <xsd:element name="IpAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="MessageSize" type="xsd:integer" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -313,6 +317,7 @@
                 <xsd:element name="IpAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="MessageSize" type="xsd:integer" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -328,6 +333,7 @@
                 <xsd:element name="IpAddress" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="Subject" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -341,6 +347,7 @@
                 <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
                 <xsd:element ref="mg:RenderErrors" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -367,6 +374,7 @@
                 <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
                 <xsd:element ref="mg:JobError" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:all>
         </xsd:complexType>
     </xsd:element>
