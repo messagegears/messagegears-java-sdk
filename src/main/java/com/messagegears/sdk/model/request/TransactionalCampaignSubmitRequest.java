@@ -5,6 +5,7 @@ public class TransactionalCampaignSubmitRequest extends BaseJobRequest {
     private static final RequestType ACTION = RequestType.TRANSACTIONAL_CAMPAIGN_SUBMIT;
     
     private long campaignId;
+    private String contextDataXml;
     private String recipientXml;
     
     public void setCampaignId(long campaignId) {
@@ -26,5 +27,13 @@ public class TransactionalCampaignSubmitRequest extends BaseJobRequest {
     @Override
     public RequestType getRequestType() {
         return ACTION;
+    }
+
+    public String getContextDataXml() {
+        return contextDataXml;
+    }
+
+    public void setContextDataXml(String contextDataXml) {
+        this.contextDataXml = contextDataXml;
     }
 }

@@ -34,6 +34,7 @@ public enum RestRequestParam {
     UPDATE_ACCOUNT_ID("Id", "The AccountId to update for this request."),
     SUBJECT_LINE("SubjectLine", "The subject line of the message."),
     TEMPLATE_LANGUAGE("TemplateLanguage","The template language to render the message with. Defaults to FREEMARKER."),
+    TEMPLATE_LIBRARY("TemplateLibrary","The optional inline global template library to render the message with. Only supported by FREEMARKER."),
     TEXT_TEMPLATE("TextTemplate", "The text template content of the message."),
     UNSUBSCRIBE_HEADER("UnsubscribeHeader", "Specifies whether messages should include the unsubscribe header."),
     URL_APPEND("UrlAppend", "One or more name=value pairs that will be included with each autotracked link."),

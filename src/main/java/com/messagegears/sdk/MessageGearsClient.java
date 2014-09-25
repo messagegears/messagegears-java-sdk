@@ -167,6 +167,8 @@ public class MessageGearsClient {
         addCredentials(params);
         // Add the action param to the request
         addParam(params, RestRequestParam.ACTION, request.getRequestType().getAction());
+        // Add the context-data xml to the request
+        addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
         // Add the recipient xml to the request (single recipient only).
         addParam(params, RestRequestParam.RECIPIENT_XML, request.getRecipientXml());
         // Add the standard job request params
@@ -199,8 +201,12 @@ public class MessageGearsClient {
         addCredentials(params);
         // Add the action param to the request
         addParam(params, RestRequestParam.ACTION, request.getRequestType().getAction());
+        // Add the context-data xml to the request
+        addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
         // Add the recipient xml to the request (single recipient only).
         addParam(params, RestRequestParam.RECIPIENT_XML, request.getRecipientXml());
+        // Add the template library inline
+        addParam(params, RestRequestParam.TEMPLATE_LIBRARY, request.getTemplateLibrary());
         // Add the standard job request params
         addJobRequestParams(params, request);
         // Submit the request
@@ -228,6 +234,8 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.RECIPIENT_LIST_XML_URL, request.getRecipientListXmlUrl());
         // Add optional context xml data 
         addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
+        // Add the template library inline
+        addParam(params, RestRequestParam.TEMPLATE_LIBRARY, request.getTemplateLibrary());
         // Add the standard job request params
         addJobRequestParams(params, request);
         // Submit the request
@@ -296,6 +304,8 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.RECIPIENT_XML, request.getRecipientXml());
         // Add optional context xml data
         addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
+        // Add the template library inline
+        addParam(params, RestRequestParam.TEMPLATE_LIBRARY, request.getTemplateLibrary());
 
         // Submit the request
         String xmlResponse = invoke(params);

@@ -26,7 +26,8 @@ public abstract class JobRequest extends BaseJobRequest {
     private String customTrackingDomain;
     private boolean unsubscribeHeader = false;
     private List<Header> headers = new ArrayList<Header>();
-    
+    private String templateLibrary;
+
     /**
      * @return the templateLanguage
      */
@@ -250,5 +251,12 @@ public abstract class JobRequest extends BaseJobRequest {
     public void setHeaders(List<Header> headers) {
         this.headers = headers;
     }
-    
+
+    public String getTemplateLibrary() {
+        return templateLibrary;
+    }
+
+    public void setTemplateLibrary(String templateLibrary) {
+        this.templateLibrary = templateLibrary;
+    }
 }
