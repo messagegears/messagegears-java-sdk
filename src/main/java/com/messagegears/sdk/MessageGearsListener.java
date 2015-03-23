@@ -6,6 +6,10 @@ import com.messagegears.sdk.v3_1.DeliveredMessageActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
+import com.messagegears.sdk.v3_1.SmsDeliveredActivity;
+import com.messagegears.sdk.v3_1.SmsDeliveryFailureActivity;
+import com.messagegears.sdk.v3_1.SmsInboundActivity;
+import com.messagegears.sdk.v3_1.SmsRenderErrorActivity;
 import com.messagegears.sdk.v3_1.SpamComplaintActivity;
 import com.messagegears.sdk.v3_1.UnsubActivity;
 
@@ -35,5 +39,13 @@ public interface MessageGearsListener {
     public void onRenderError(RenderErrorActivity activity);
     
     public void onUnsub(UnsubActivity activity);
+    
+    public void onSmsDeliveryActivity(SmsDeliveredActivity activity);
+    
+    public void onSmsDeliveryFailureActivity(SmsDeliveryFailureActivity activity);
+    
+    public void onSmsRenderErrorActivity(SmsRenderErrorActivity activity);
+    
+    public void onSmsInboundActivity(SmsInboundActivity activity);
     
 }

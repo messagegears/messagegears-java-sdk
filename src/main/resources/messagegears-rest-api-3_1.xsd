@@ -7,7 +7,7 @@
                 <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element ref="mg:Result" minOccurs="1" maxOccurs="1" />
                 <xsd:element ref="mg:RequestErrors" minOccurs="0" maxOccurs="1" />
-                <xsd:element name="imageUrl" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="imageUrl" type="xsd:string" minOccurs="0" maxOccurs="1" />
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -235,6 +235,10 @@
                 <xsd:element ref="mg:SpamComplaintActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:RenderErrorActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:JobErrorActivity" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="mg:SmsDeliveredActivity" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="mg:SmsDeliveryFailureActivity" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="mg:SmsRenderErrorActivity" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="mg:SmsInboundActivity" minOccurs="0" maxOccurs="unbounded" />
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -383,6 +387,69 @@
             <xsd:sequence>
                 <xsd:element name="ErrorCode" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ErrorMessage" type="xsd:string" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="SmsDeliveryFailureActivity">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="CorrelationId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="SmsAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="RecipientId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="Category" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="CategoryCode" type="xsd:integer" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="SendingSmsNumber" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="SmsDeliveredActivity">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="CorrelationId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="SmsAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="RecipientId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="SendingSmsNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="SmsRenderErrorActivity">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="CorrelationId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="SmsAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="RecipientId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+                <xsd:element ref="mg:RenderErrors" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="SmsInboundActivity">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="SendingSmsNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="DestinationSmsNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="SmsBody" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="FromCity" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="FromState" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="FromZip" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="FromCountry" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="ToCity" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="ToState" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="ToZip" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="ToCountry" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

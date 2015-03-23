@@ -8,7 +8,11 @@ public enum ActivityType {
     RENDER_ERRORS("RenderErrorActivity"),
     JOB_ERRORS("JobErrorActivity"),
     SPAM_COMPLAINTS("SpamComplaintActivity"),
-    UNSUBSCRIBES("UnsubActivity");
+    UNSUBSCRIBES("UnsubActivity"),
+    SMS_DELIVERED_ACTIVITY("SmsDeliveryActivity"),
+    SMS_DELIVERY_FAILURE_ACTIVITY("SmsDeliveryFailureActivity"),
+    SMS_RENDER_ERROR_ACTIVITY("SmsRenderErrorActivity"),
+    SMS_INBOUND_ACTIVITY("SmsInboundActivity");
     
     private String xmlTag;
     

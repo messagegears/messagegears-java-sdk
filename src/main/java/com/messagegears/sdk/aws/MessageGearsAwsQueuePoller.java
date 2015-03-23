@@ -22,6 +22,10 @@ import com.messagegears.sdk.v3_1.DeliveredMessageActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
+import com.messagegears.sdk.v3_1.SmsDeliveredActivity;
+import com.messagegears.sdk.v3_1.SmsDeliveryFailureActivity;
+import com.messagegears.sdk.v3_1.SmsInboundActivity;
+import com.messagegears.sdk.v3_1.SmsRenderErrorActivity;
 import com.messagegears.sdk.v3_1.SpamComplaintActivity;
 import com.messagegears.sdk.v3_1.UnsubActivity;
 
@@ -151,6 +155,34 @@ public class MessageGearsAwsQueuePoller {
             for (UnsubActivity unsub : items.getUnsubActivity()) {
                 LOGGER.info("Received an unsub message belonging to job: " + unsub.getRequestId());
                 listener.onUnsub(unsub);
+            }       
+        }
+        
+        if(items.getSmsDeliveredActivity() != null) {
+            for (SmsDeliveredActivity smsDeliveredActivity : items.getSmsDeliveredActivity()) {
+                LOGGER.info("Received an smsDeliveredActivity message belonging to job: " + smsDeliveredActivity.getRequestId());
+                listener.onSmsDeliveryActivity(smsDeliveredActivity);
+            }       
+        }
+        
+        if(items.getSmsDeliveryFailureActivity() != null) {
+            for (SmsDeliveryFailureActivity smsDeliveryFailureActivity : items.getSmsDeliveryFailureActivity()) {
+                LOGGER.info("Received an smsDeliveryFailureActivity message belonging to job: " + smsDeliveryFailureActivity.getRequestId());
+                listener.onSmsDeliveryFailureActivity(smsDeliveryFailureActivity);
+            }       
+        }
+        
+        if(items.getSmsRenderErrorActivity() != null) {
+            for (SmsRenderErrorActivity smsRenderErrorActivity : items.getSmsRenderErrorActivity()) {
+                LOGGER.info("Received an smsRenderErrorActivity message belonging to job: " + smsRenderErrorActivity.getRequestId());
+                listener.onSmsRenderErrorActivity(smsRenderErrorActivity);
+            }       
+        }
+        
+        if(items.getSmsInboundActivity() != null) {
+            for (SmsInboundActivity smsInboundActivity : items.getSmsInboundActivity()) {
+                LOGGER.info("Received an smsInboundActivity message: " + smsInboundActivity.getSmsBody());
+                listener.onSmsInboundActivity(smsInboundActivity);
             }       
         }
     }

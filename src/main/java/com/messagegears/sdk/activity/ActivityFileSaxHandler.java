@@ -20,6 +20,10 @@ import com.messagegears.sdk.v3_1.DeliveredMessageActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
+import com.messagegears.sdk.v3_1.SmsDeliveredActivity;
+import com.messagegears.sdk.v3_1.SmsDeliveryFailureActivity;
+import com.messagegears.sdk.v3_1.SmsInboundActivity;
+import com.messagegears.sdk.v3_1.SmsRenderErrorActivity;
 import com.messagegears.sdk.v3_1.SpamComplaintActivity;
 import com.messagegears.sdk.v3_1.UnsubActivity;
 
@@ -133,6 +137,14 @@ public class ActivityFileSaxHandler extends DefaultHandler {
                 listener.onSpamComplaint(SpamComplaintActivity.unmarshal(reader));
             } else if (activityType.equals(ActivityType.UNSUBSCRIBES)) {
                 listener.onUnsub(UnsubActivity.unmarshal(reader));
+            } else if (activityType.equals(ActivityType.SMS_DELIVERED_ACTIVITY)) {
+                listener.onSmsDeliveryActivity(SmsDeliveredActivity.unmarshal(reader));
+            } else if (activityType.equals(ActivityType.SMS_DELIVERY_FAILURE_ACTIVITY)) {
+                listener.onSmsDeliveryFailureActivity(SmsDeliveryFailureActivity.unmarshal(reader));
+            } else if (activityType.equals(ActivityType.SMS_INBOUND_ACTIVITY)) {
+                listener.onSmsInboundActivity(SmsInboundActivity.unmarshal(reader));
+            } else if (activityType.equals(ActivityType.SMS_RENDER_ERROR_ACTIVITY)) {
+                listener.onSmsRenderErrorActivity(SmsRenderErrorActivity.unmarshal(reader));
             } else {
                 throw new MessageGearsClientException ("Unrecognized ActivityType: " + activityType);
             }
