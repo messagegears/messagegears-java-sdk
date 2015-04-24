@@ -4,7 +4,6 @@ public abstract class BaseJobRequest extends Request {
 
     private String notificationEmailAddress;
     private String correlationId;
-    private String jobCategory;
 	
     /**
      * @return the notificationEmailAddress
@@ -33,19 +32,5 @@ public abstract class BaseJobRequest extends Request {
      */
     public void setCorrelationId(String correlationId) {
         this.correlationId = correlationId;
-    }
-    
-    /**
-     * @return the jobCategory
-     */
-    public String getJobCategory() {
-        return jobCategory;
-    }
-    
-    /**
-     * @param jobCategory the jobCategory to set
-     */
-    public void setJobCategory(String jobCategory) {
-        this.jobCategory = jobCategory;
     }
 }

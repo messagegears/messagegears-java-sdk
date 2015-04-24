@@ -439,6 +439,7 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.URL_APPEND, request.getUrlAppend());
         addParam(params, RestRequestParam.CUSTOM_TRACKING_DOMAIN, request.getCustomTrackingDomain());
         addParam(params, RestRequestParam.UNSUBSCRIBE_HEADER, request.isUnsubscribeHeader());
+        addParam(params, RestRequestParam.JOB_CATEGORY, request.getJobCategory());
 
         addAttachments(params, request.getAttachments());
         addHeaders(params, request.getHeaders());
@@ -447,7 +448,6 @@ public class MessageGearsClient {
     private void addBaseJobRequestParams(List<NameValuePair> params, BaseJobRequest request) {     
         addParam(params, RestRequestParam.NOTIFICATION_EMAIL_ADDRESS, request.getNotificationEmailAddress());
         addParam(params, RestRequestParam.CORRELATION_ID, request.getCorrelationId());
-        addParam(params, RestRequestParam.JOB_CATEGORY, request.getJobCategory());
     }
     
     private String invoke(List<NameValuePair> params) {

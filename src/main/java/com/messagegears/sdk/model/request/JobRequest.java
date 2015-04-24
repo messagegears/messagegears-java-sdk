@@ -27,6 +27,7 @@ public abstract class JobRequest extends BaseJobRequest {
     private boolean unsubscribeHeader = false;
     private List<Header> headers = new ArrayList<Header>();
     private String templateLibrary;
+    private String jobCategory;
 
     /**
      * @return the templateLanguage
@@ -258,5 +259,19 @@ public abstract class JobRequest extends BaseJobRequest {
 
     public void setTemplateLibrary(String templateLibrary) {
         this.templateLibrary = templateLibrary;
+    }
+
+    /**
+     * @return the jobCategory
+     */
+    public String getJobCategory() {
+        return jobCategory;
+    }
+
+    /**
+     * @param jobCategory the jobCategory to set
+     */
+    public void setJobCategory(String jobCategory) {
+        this.jobCategory = jobCategory;
     }
 }
