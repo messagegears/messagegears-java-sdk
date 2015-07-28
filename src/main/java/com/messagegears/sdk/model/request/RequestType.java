@@ -11,7 +11,9 @@ public enum RequestType {
     TRANSACTIONAL_SUBMIT("TransactionalJobSubmit", "Submit a job to a single recipient."),
     TRANSACTIONAL_CAMPAIGN_SUBMIT("TransactionalCampaignSubmit", "Submit a job to a single recipient using an existing campaign."),
     THUMBNAIL("Thumbnail", "Create a thumbnail image file for an HTML or Text string."),
-    UPDATE_ACCOUNT("UpdateAccount", "Update attributes of an existing account by specifying the accountId.");
+    UPDATE_ACCOUNT("UpdateAccount", "Update attributes of an existing account by specifying the accountId."),
+    TRANSACTIONAL_CONTENT_RETRIEVAL("TransactionalContentRetrieval", "Retrieve the rendered content for a particular transactional job or campaign."),
+    ;
     
     private String action;
     private String description;

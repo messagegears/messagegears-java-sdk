@@ -40,7 +40,9 @@ public enum RestRequestParam {
     URL_APPEND("UrlAppend", "One or more name=value pairs that will be included with each autotracked link."),
     CONTENT("Content","The string of data to be used to render a thumbnail image."),
     IMAGE_ID("ImageId", "The image id to be used to name the thumbnail image."),
-    IMAGE_SIZE("ImageSize", "The size of the thumbnail image to be generated.");
+    IMAGE_SIZE("ImageSize", "The size of the thumbnail image to be generated."),
+    ORIGINAL_REQUEST_ID("OriginalRequestId", "The request id of the transactional job or campaign"),
+    ;
     
     private String paramName;
     private String description;

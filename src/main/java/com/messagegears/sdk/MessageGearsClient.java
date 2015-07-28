@@ -38,6 +38,7 @@ import com.messagegears.sdk.model.request.MessagePreviewRequest;
 import com.messagegears.sdk.model.request.RestRequestParam;
 import com.messagegears.sdk.model.request.ThumbnailRequest;
 import com.messagegears.sdk.model.request.TransactionalCampaignSubmitRequest;
+import com.messagegears.sdk.model.request.TransactionalContentRetrievalRequest;
 import com.messagegears.sdk.model.request.TransactionalJobSubmitRequest;
 import com.messagegears.sdk.model.request.UpdateAccountRequest;
 import com.messagegears.sdk.v3_1.AccountSummaryResponse;
@@ -46,6 +47,7 @@ import com.messagegears.sdk.v3_1.BulkJobSummaryResponse;
 import com.messagegears.sdk.v3_1.CreateAccountResponse;
 import com.messagegears.sdk.v3_1.MessagePreviewResponse;
 import com.messagegears.sdk.v3_1.ThumbnailResponse;
+import com.messagegears.sdk.v3_1.TransactionalContent;
 import com.messagegears.sdk.v3_1.TransactionalJobSubmitResponse;
 import com.messagegears.sdk.v3_1.UpdateAccountResponse;
 
@@ -315,6 +317,35 @@ public class MessageGearsClient {
         try {
             // Unmarshal
             response = MessagePreviewResponse.unmarshal(reader);
+        } catch (Exception e) {
+            throw new MessageGearsClientException(e);
+        }
+
+        return response;
+    }
+    
+    /**
+     * Used to return the rendered content of a transactional job or campaign 
+     * by supplying the OriginalRequestId.
+     * 
+     * @param request A @TransactionalContentRetrievalRequest.
+     * @return A @TransactionalContent.
+     */
+    public TransactionalContent transactionalContentRetrieval (TransactionalContentRetrievalRequest request) {
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        // Add your account credentials to the request
+        addCredentials(params);
+        // Add the action param to the request
+        addParam(params, RestRequestParam.ACTION, request.getRequestType().getAction());
+        addParam(params, RestRequestParam.ORIGINAL_REQUEST_ID, request.getOriginalRequestId());
+        // Submit the request
+        String xmlResponse = invoke(params);
+        // Parse the response
+        Reader reader = new StringReader(xmlResponse);
+        TransactionalContent response;
+        try {
+            // Unmarshal
+            response = TransactionalContent.unmarshal(reader);
         } catch (Exception e) {
             throw new MessageGearsClientException(e);
         }

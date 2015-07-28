@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class MessageGearsProperties {
 
-    private String messageGearsEndPoint = "https://api.messagegears.net/3.1/WebService";
+    private String messageGearsEndPoint = "http://localhost:8080/3.1/WebService";
     private String myMessageGearsAccountId;
     private String myMessageGearsApiKey;
     private String downloadDirectory = "./";

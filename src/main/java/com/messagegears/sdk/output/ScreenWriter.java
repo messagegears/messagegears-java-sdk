@@ -1,6 +1,7 @@
 package com.messagegears.sdk.output;
 
 import com.messagegears.sdk.v3_1.AccountSummaryResponse;
+import com.messagegears.sdk.v3_1.Attachment;
 import com.messagegears.sdk.v3_1.BouncedMessageActivity;
 import com.messagegears.sdk.v3_1.BulkJobError;
 import com.messagegears.sdk.v3_1.BulkJobSubmitResponse;
@@ -18,6 +19,7 @@ import com.messagegears.sdk.v3_1.RequestErrors;
 import com.messagegears.sdk.v3_1.SpamAssassinRule;
 import com.messagegears.sdk.v3_1.SpamComplaintActivity;
 import com.messagegears.sdk.v3_1.ThumbnailResponse;
+import com.messagegears.sdk.v3_1.TransactionalContent;
 import com.messagegears.sdk.v3_1.TransactionalJobSubmitResponse;
 import com.messagegears.sdk.v3_1.UnsubActivity;
 import com.messagegears.sdk.v3_1.UpdateAccountResponse;
@@ -252,6 +254,37 @@ public class ScreenWriter {
                 System.out.println("SpamAssassinScore: " + response.getPreviewContent().getSpamAssassinReport().getScore());
                 for (SpamAssassinRule rule : response.getPreviewContent().getSpamAssassinReport().getSpamAssassinRules().getSpamAssassinRule()) {
                     System.out.println(rule.getPoints() + " Points - " + rule.getRuleName() + " : " + rule.getDescription());
+                }
+            } else {
+                for (RenderError error : response.getRenderErrors().getRenderError()) {
+                    System.err.println("RenderError: " + error.getErrorCode() + " - " + error.getErrorMessage());
+                }
+            }
+        } else {
+            for (RequestError error : response.getRequestErrors().getRequestError()) {
+                System.err.println("RequestError: " + error.getErrorCode() + " - " + error.getErrorMessage());
+            }
+        }
+    }
+    
+    /**
+     * A utility function designed to pretty-print a @TransactionalContent
+     * to standard out.
+     * @param response The @TransactionalContent to print.
+     */
+    public static void printResponse(TransactionalContent response) {
+        printResponse(response.getResult(), response.getRequestErrors());      
+        if (response.getResult() == ResultType.REQUEST_SUCCESSFUL) {             
+            if (response.getRenderErrors() == null) {
+                System.out.println("FromName: " + response.getFromName() +
+                                  " <" + response.getFromAddress() + ">");
+                System.out.println("Subject: " + response.getSubjectLine());
+                System.out.println("HtmlContent: " + response.getHtmlContent());
+                System.out.println("TextContent: " + response.getTextContent());
+                System.out.println("Attachments:");
+                for (Attachment attachment : response.getAttachments().getAttachment()) {
+                	System.out.println("            Name: " + attachment.getName());
+                	System.out.println("    Content type: " + attachment.getContentType());
                 }
             } else {
                 for (RenderError error : response.getRenderErrors().getRenderError()) {
