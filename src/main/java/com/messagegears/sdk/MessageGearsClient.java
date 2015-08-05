@@ -554,6 +554,7 @@ public class MessageGearsClient {
     
     private void addAttachments(List<NameValuePair> params, List<Attachment> attachments) {
         for (int i = 0; i < attachments.size(); i++) {
+            addParam(params, RestRequestParam.ATTACHMENT_CONTENT.getParamName() + "." + Integer.toString(i + 1), attachments.get(i).getContent());
             addParam(params, RestRequestParam.ATTACHMENT_URL.getParamName() + "." + Integer.toString(i + 1), attachments.get(i).getUrl());
             addParam(params, RestRequestParam.ATTACHMENT_NAME.getParamName() + "." + Integer.toString(i + 1), attachments.get(i).getName());
             addParam(params, RestRequestParam.ATTACHMENT_CONTENT_TYPE.getParamName() + "." +

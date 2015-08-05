@@ -5,6 +5,7 @@ public class Attachment {
     String url;
     String name;
     String contentType;
+    String content;
     
     public String getUrl() {
         return url;
@@ -23,6 +24,12 @@ public class Attachment {
     }
     public void setContentType(String contentType) {
         this.contentType = contentType;
+    }
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
     }
         
 }

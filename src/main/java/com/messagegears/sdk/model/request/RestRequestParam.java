@@ -9,6 +9,7 @@ public enum RestRequestParam {
     ATTACHMENT_NAME("AttachmentName", "The file name of the attachment."),
     ATTACHMENT_CONTENT_TYPE("AttachmentContentType", "The content type to specify with the attachement."),
     ATTACHMENT_URL("AttachmentUrl", "The url of the attachment file."),
+    ATTACHMENT_CONTENT("AttachmentContent", "The Base64 string encoded in line attachment content."),
     AUTOTRACK("AutoTrack", "Specify whether to autotrack links found in the HtmlTemplate."),
     BULK_CORRELATION_ID("BulkJobCorrelationId", "The BulkJobCorrelationId"),
     BULK_REQUEST_ID("BulkJobRequestId", "The BulkJobRequestId."),
