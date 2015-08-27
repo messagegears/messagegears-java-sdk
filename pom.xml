@@ -9,7 +9,7 @@
     
     <groupId>com.messagegears</groupId>
     <artifactId>messagegears-java-sdk</artifactId>
-    <version>3.1.16-SNAPSHOT</version>
+    <version>3.1.16</version>
     <packaging>jar</packaging>
 
     <name>messagegears-java-sdk</name>
