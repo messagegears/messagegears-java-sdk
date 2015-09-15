@@ -13,6 +13,7 @@ public enum RequestType {
     THUMBNAIL("Thumbnail", "Create a thumbnail image file for an HTML or Text string."),
     UPDATE_ACCOUNT("UpdateAccount", "Update attributes of an existing account by specifying the accountId."),
     TRANSACTIONAL_CONTENT_RETRIEVAL("TransactionalContentRetrieval", "Retrieve the rendered content for a particular transactional job or campaign."),
+    JOB_STATE_RETRIEVAL("JobStateRetrieval", "Retrieve the state for a given job by request id"),
     ;
     
     private String action;
