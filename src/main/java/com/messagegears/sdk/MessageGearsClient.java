@@ -34,6 +34,7 @@ import com.messagegears.sdk.model.request.BulkJobSubmitRequest;
 import com.messagegears.sdk.model.request.BulkJobSummaryRequest;
 import com.messagegears.sdk.model.request.CreateAccountRequest;
 import com.messagegears.sdk.model.request.JobRequest;
+import com.messagegears.sdk.model.request.JobStateRequest;
 import com.messagegears.sdk.model.request.JobStateRetrievalRequest;
 import com.messagegears.sdk.model.request.MessagePreviewRequest;
 import com.messagegears.sdk.model.request.RestRequestParam;
@@ -359,6 +360,34 @@ public class MessageGearsClient {
         return response;
     }
     
+    /**
+     * Used to update the state (Pause/Resume/Cancel) of a bulk job with a given job request id. 
+     * 
+     * @param request A @TransactionalContentRetrievalRequest.
+     * @return A @TransactionalContent.
+     */
+    public JobStateResponse setJobState (JobStateRequest request) {
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        // Add your account credentials to the request
+        addCredentials(params);
+        // Add the action param to the request
+        addParam(params, RestRequestParam.ACTION, request.getRequestType().getAction());
+        addParam(params, RestRequestParam.JOB_REQUEST_ID, request.getJobRequestId());
+        addParam(params, RestRequestParam.JOB_STATUS, request.getStatus().toString());
+        // Submit the request
+        String xmlResponse = invoke(params);
+        // Parse the response
+        Reader reader = new StringReader(xmlResponse);
+        JobStateResponse response;
+        try {
+            // Unmarshal
+            response = JobStateResponse.unmarshal(reader);
+        } catch (Exception e) {
+            throw new MessageGearsClientException(e);
+        }
+        
+        return response;
+    }
     /**
      * Used to return the state (Pause/Resume/Cancel) of a bulk job with a given job request id. 
      * 

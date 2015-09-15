@@ -46,6 +46,7 @@ public enum RestRequestParam {
     SUPRESSION_LIST_XML_URL("SuppressionXmlUrl", "The URL to the suppressed recipient list to be used with a bulk job submit."),
     SUPRESSION_LIST_CSV_URL("SuppressionCsvUrl", "The URL to the suppressed recipient list to be used with a bulk job submit."),
     JOB_REQUEST_ID("jobRequestId", "The request id of the bulk job"),
+    JOB_STATUS("status", "The numeric representation of the requested job status (0=Pause, 1=Resume, 2=Cancel"),
     ;
     
     private String paramName;
