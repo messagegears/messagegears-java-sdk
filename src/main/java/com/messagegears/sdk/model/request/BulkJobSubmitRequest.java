@@ -6,6 +6,8 @@ public class BulkJobSubmitRequest extends JobRequest {
     
     private String recipientListXmlUrl;
     private String contextDataXml;
+    private String suppressionXmlUrl;
+    private String suppressionCsvUrl;
 
     public void setRecipientListXmlUrl(String recipientListXmlUrl) {
         this.recipientListXmlUrl = recipientListXmlUrl;
@@ -27,4 +29,21 @@ public class BulkJobSubmitRequest extends JobRequest {
     public RequestType getRequestType() {
         return ACTION;
     }
+
+	public String getSuppressionXmlUrl() {
+		return suppressionXmlUrl;
+	}
+
+	public void setSuppressionXmlUrl(String suppressionXmlUrl) {
+		this.suppressionXmlUrl = suppressionXmlUrl;
+	}
+
+	public String getSuppressionCsvUrl() {
+		return suppressionCsvUrl;
+	}
+
+	public void setSuppressionCsvUrl(String suppressionCsvUrl) {
+		this.suppressionCsvUrl = suppressionCsvUrl;
+	}
+
 }
