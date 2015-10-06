@@ -43,6 +43,8 @@ public enum RestRequestParam {
     IMAGE_ID("ImageId", "The image id to be used to name the thumbnail image."),
     IMAGE_SIZE("ImageSize", "The size of the thumbnail image to be generated."),
     ORIGINAL_REQUEST_ID("OriginalRequestId", "The request id of the transactional job or campaign"),
+    SUPRESSION_LIST_XML_URL("SuppressionXmlUrl", "The URL to the suppressed recipient list to be used with a bulk job submit."),
+    SUPRESSION_LIST_CSV_URL("SuppressionCsvUrl", "The URL to the suppressed recipient list to be used with a bulk job submit."),
     ;
     
     private String paramName;

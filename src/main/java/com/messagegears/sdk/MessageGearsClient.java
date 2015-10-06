@@ -234,6 +234,8 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.ACTION, request.getRequestType().getAction());
         // Add the recipient list xml url, which points to the location of the recipipent list
         addParam(params, RestRequestParam.RECIPIENT_LIST_XML_URL, request.getRecipientListXmlUrl());
+        addParam(params, RestRequestParam.SUPRESSION_LIST_XML_URL, request.getSuppressionXmlUrl());
+        addParam(params, RestRequestParam.SUPRESSION_LIST_CSV_URL, request.getSuppressionCsvUrl());
         // Add optional context xml data 
         addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
         // Add the template library inline
@@ -263,6 +265,8 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.ACTION, request.getRequestType().getAction());
         // Add the recipient list xml url, which points to the location of the recipipent list
         addParam(params, RestRequestParam.RECIPIENT_LIST_XML_URL, request.getRecipientListXmlUrl());
+        addParam(params, RestRequestParam.SUPRESSION_LIST_XML_URL, request.getSuppressionXmlUrl());
+        addParam(params, RestRequestParam.SUPRESSION_LIST_CSV_URL, request.getSuppressionCsvUrl());
         // Add optional context xml data 
         addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
         // Add the standard job request params
