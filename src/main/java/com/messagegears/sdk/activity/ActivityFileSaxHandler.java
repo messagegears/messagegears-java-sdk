@@ -17,6 +17,7 @@ import com.messagegears.sdk.model.ActivityType;
 import com.messagegears.sdk.v3_1.BouncedMessageActivity;
 import com.messagegears.sdk.v3_1.ClickActivity;
 import com.messagegears.sdk.v3_1.DeliveredMessageActivity;
+import com.messagegears.sdk.v3_1.InboundEmailActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
@@ -137,6 +138,8 @@ public class ActivityFileSaxHandler extends DefaultHandler {
                 listener.onSpamComplaint(SpamComplaintActivity.unmarshal(reader));
             } else if (activityType.equals(ActivityType.UNSUBSCRIBES)) {
                 listener.onUnsub(UnsubActivity.unmarshal(reader));
+            } else if (activityType.equals(ActivityType.INBOUND_EMAIL_ACTIVITY)) {
+                listener.onInboundEmail(InboundEmailActivity.unmarshal(reader));
             } else if (activityType.equals(ActivityType.SMS_DELIVERED_ACTIVITY)) {
                 listener.onSmsDeliveryActivity(SmsDeliveredActivity.unmarshal(reader));
             } else if (activityType.equals(ActivityType.SMS_DELIVERY_FAILURE_ACTIVITY)) {

@@ -9,6 +9,7 @@ import com.messagegears.sdk.v3_1.BulkJobSummaryResponse;
 import com.messagegears.sdk.v3_1.ClickActivity;
 import com.messagegears.sdk.v3_1.CreateAccountResponse;
 import com.messagegears.sdk.v3_1.DeliveredMessageActivity;
+import com.messagegears.sdk.v3_1.InboundEmailActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.MessagePreviewResponse;
 import com.messagegears.sdk.v3_1.OpenActivity;
@@ -130,6 +131,22 @@ public class ScreenWriter {
         System.out.println("getRequestId(): " + activity.getRequestId());
         System.out.println("getTimestamp(): " + activity.getTimestamp());
         System.out.println("getUserAgent(): " + activity.getUserAgent());
+        System.out.println();
+    }
+    
+    public static void print(InboundEmailActivity activity) {
+        System.out.println("***** Inbound Event Received");
+        System.out.println("getActivityId(): " + activity.getActivityId());
+        System.out.println("getCorrelationId(): " + activity.getCorrelationId());
+        System.out.println("getEmailAddress(): " + activity.getEmailAddress());
+        System.out.println("getIpAddress(): " + activity.getIpAddress());
+        System.out.println("getRecipientId(): " + activity.getRecipientId());
+        System.out.println("getRequestId(): " + activity.getRequestId());
+        System.out.println("getTimestamp(): " + activity.getTimestamp());
+        System.out.println("getClassification(): " + activity.getClassification());
+        System.out.println("getContentId(): " + activity.getContentId());
+        System.out.println("getMailFrom(): " + activity.getMailFrom());
+        System.out.println("getSubject(): " + activity.getSubject());
         System.out.println();
     }
     

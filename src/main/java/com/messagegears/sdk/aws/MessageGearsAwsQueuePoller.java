@@ -19,6 +19,7 @@ import com.messagegears.sdk.v3_1.ActivityItems;
 import com.messagegears.sdk.v3_1.BouncedMessageActivity;
 import com.messagegears.sdk.v3_1.ClickActivity;
 import com.messagegears.sdk.v3_1.DeliveredMessageActivity;
+import com.messagegears.sdk.v3_1.InboundEmailActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
@@ -155,6 +156,13 @@ public class MessageGearsAwsQueuePoller {
             for (UnsubActivity unsub : items.getUnsubActivity()) {
                 LOGGER.info("Received an unsub message belonging to job: " + unsub.getRequestId());
                 listener.onUnsub(unsub);
+            }       
+        }
+        
+        if(items.getInboundEmailActivity() != null) {
+            for (InboundEmailActivity inbound : items.getInboundEmailActivity()) {
+                LOGGER.info("Received an inbound message belonging to job: " + inbound.getRequestId());
+                listener.onInboundEmail(inbound);
             }       
         }
         

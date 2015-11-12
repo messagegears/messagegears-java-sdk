@@ -9,6 +9,7 @@ public enum ActivityType {
     JOB_ERRORS("JobErrorActivity"),
     SPAM_COMPLAINTS("SpamComplaintActivity"),
     UNSUBSCRIBES("UnsubActivity"),
+    INBOUND_EMAIL_ACTIVITY("InboundEmailActivity"),
     SMS_DELIVERED_ACTIVITY("SmsDeliveryActivity"),
     SMS_DELIVERY_FAILURE_ACTIVITY("SmsDeliveryFailureActivity"),
     SMS_RENDER_ERROR_ACTIVITY("SmsRenderErrorActivity"),

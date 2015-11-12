@@ -103,13 +103,14 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
-        <xsd:element name="TransactionalContent">
+    <xsd:element name="TransactionalContent">
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element ref="mg:Result" minOccurs="1" maxOccurs="1" />
                 <xsd:element ref="mg:RequestErrors" minOccurs="0" maxOccurs="1" />
                 <xsd:element ref="mg:RenderErrors" minOccurs="0" maxOccurs="1" />
+                
                 <xsd:element name="OriginalRequestId" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="FromAddress" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="FromName" type="xsd:string" minOccurs="0" maxOccurs="1" />
@@ -120,6 +121,15 @@
                 <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                 <xsd:element name="RecipientId" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element ref="mg:Attachments" minOccurs="0" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="ForwardToAFriendResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element ref="mg:Result" minOccurs="1" maxOccurs="1" />
+                <xsd:element ref="mg:RequestErrors" minOccurs="0" maxOccurs="1" />
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -138,6 +148,7 @@
             </xsd:all>
         </xsd:complexType>
     </xsd:element>
+    
     <xsd:element name="BulkJobSummaryResponse">
         <xsd:complexType>
             <xsd:sequence>
@@ -276,6 +287,7 @@
                 <xsd:element ref="mg:OpenActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:ClickActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:UnsubActivity" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="mg:InboundEmailActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:BouncedMessageActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:DeliveredMessageActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:SpamComplaintActivity" minOccurs="0" maxOccurs="unbounded" />
@@ -318,6 +330,7 @@
                 <xsd:element name="UrlName" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="Microsite" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="UrlId" type="xsd:string" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
@@ -349,8 +362,8 @@
                 <xsd:element name="Category" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="CategoryCode" type="xsd:integer" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="Details" type="xsd:string" minOccurs="1" maxOccurs="1" />
-                <xsd:element name="IpAddress" type="xsd:string" minOccurs="0" maxOccurs="1" />
-                <xsd:element name="MessageSize" type="xsd:integer" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="IpAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="MessageSize" type="xsd:integer" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
@@ -436,6 +449,25 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="InboundEmailActivity">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="CorrelationId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="EmailAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="RecipientId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="IpAddress" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="MailFrom" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="Subject" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="Classification" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ContentId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="Content" type="xsd:string" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
     <xsd:element name="SmsDeliveryFailureActivity">
         <xsd:complexType>
             <xsd:sequence>
@@ -462,7 +494,7 @@
                 <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-                <xsd:element name="SendingSmsNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="SendingSmsNumber" type="xsd:string" minOccurs="0" maxOccurs="1"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -485,9 +517,9 @@
             <xsd:sequence>
                 <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
-                <xsd:element name="SendingSmsNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-                <xsd:element name="DestinationSmsNumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-                <xsd:element name="SmsBody" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="SendingSmsNumber" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="DestinationSmsNumber" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="SmsBody" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                 <xsd:element name="FromCity" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                 <xsd:element name="FromState" type="xsd:string" minOccurs="0" maxOccurs="1"/>
                 <xsd:element name="FromZip" type="xsd:string" minOccurs="0" maxOccurs="1"/>

@@ -3,6 +3,7 @@ package com.messagegears.sdk;
 import com.messagegears.sdk.v3_1.BouncedMessageActivity;
 import com.messagegears.sdk.v3_1.ClickActivity;
 import com.messagegears.sdk.v3_1.DeliveredMessageActivity;
+import com.messagegears.sdk.v3_1.InboundEmailActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
@@ -37,6 +38,8 @@ public interface MessageGearsListener {
     public void onJobError(JobErrorActivity activity);
     
     public void onRenderError(RenderErrorActivity activity);
+    
+    public void onInboundEmail(InboundEmailActivity activity);
     
     public void onUnsub(UnsubActivity activity);
     
