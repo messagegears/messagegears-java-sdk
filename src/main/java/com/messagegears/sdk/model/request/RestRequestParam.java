@@ -26,6 +26,7 @@ public enum RestRequestParam {
     NAME("Name","The name of the subaccount being referenced."),
     NOTIFICATION_EMAIL_ADDRESS("NotificationEmailAddress", "The email address that JobError notifications will be sent to."),
     RECIPIENT_LIST_XML_URL("RecipientListXmlUrl", "The URL to the recipient list to be used with a bulk job submit."),
+    RECIPIENT_TOKEN("RecipientToken", "The receipient token identifying the message to foward."),
     RECIPIENT_XML("RecipientXml", "The receipient xml portion of the message."),
     CONTEXT_DATA_XML("ContextDataXml", "The optional context xml."),
     REQUEST_ID("RequestId", "The RequestId to retrieve activity for."),

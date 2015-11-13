@@ -33,6 +33,7 @@ import com.messagegears.sdk.model.request.BulkCampaignSubmitRequest;
 import com.messagegears.sdk.model.request.BulkJobSubmitRequest;
 import com.messagegears.sdk.model.request.BulkJobSummaryRequest;
 import com.messagegears.sdk.model.request.CreateAccountRequest;
+import com.messagegears.sdk.model.request.ForwardToAFriendRequest;
 import com.messagegears.sdk.model.request.JobRequest;
 import com.messagegears.sdk.model.request.JobStateRequest;
 import com.messagegears.sdk.model.request.JobStateRetrievalRequest;
@@ -47,6 +48,7 @@ import com.messagegears.sdk.v3_1.AccountSummaryResponse;
 import com.messagegears.sdk.v3_1.BulkJobSubmitResponse;
 import com.messagegears.sdk.v3_1.BulkJobSummaryResponse;
 import com.messagegears.sdk.v3_1.CreateAccountResponse;
+import com.messagegears.sdk.v3_1.ForwardToAFriendResponse;
 import com.messagegears.sdk.v3_1.JobStateResponse;
 import com.messagegears.sdk.v3_1.MessagePreviewResponse;
 import com.messagegears.sdk.v3_1.ThumbnailResponse;
@@ -507,6 +509,40 @@ public class MessageGearsClient {
         LOGGER.info("Download complete.");
 
         return fileName;
+    }
+    
+    /**
+     * Submits a ForwardToAFriend Job (to a single recipient) for processing.
+     * @param request A @TransactionalJobSubmitRequest
+     * @return A @TransactionalJobSubmitResponse
+     */
+    public ForwardToAFriendResponse forwardToAFriendSubmit (ForwardToAFriendRequest request) {
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        // Add your account credentials to the request
+        addCredentials(params);
+        // Add the action param to the request
+        addParam(params, RestRequestParam.ACTION, request.getRequestType().getAction());
+        // Add the recipient token to the request.
+        addParam(params, RestRequestParam.RECIPIENT_TOKEN, request.getRecipientToken());
+        // Add the recipient xml to the request (single recipient only).
+        addParam(params, RestRequestParam.RECIPIENT_XML, request.getRecipientXml());
+        // Add the standard job request params
+        addBaseJobRequestParams(params, request);
+        // add the campaign id
+        addParam(params, RestRequestParam.CAMPAIGN_ID, Long.toString(request.getCampaignId()));
+        // Submit the request
+        String xmlResponse = invoke(params);
+        // Parse the response
+        Reader reader = new StringReader(xmlResponse);
+        ForwardToAFriendResponse response;
+        try {
+            // Unmarshal
+            response = ForwardToAFriendResponse.unmarshal(reader);
+        } catch (Exception e) {
+            throw new MessageGearsClientException(e);
+        }
+
+        return response;
     }
     
     private void addJobRequestParams(List<NameValuePair> params, JobRequest request) {
