@@ -7,6 +7,7 @@ import com.messagegears.sdk.v3_1.InboundEmailActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
+import com.messagegears.sdk.v3_1.RequestActivity;
 import com.messagegears.sdk.v3_1.SmsDeliveredActivity;
 import com.messagegears.sdk.v3_1.SmsDeliveryFailureActivity;
 import com.messagegears.sdk.v3_1.SmsInboundActivity;
@@ -50,5 +51,7 @@ public interface MessageGearsListener {
     public void onSmsRenderErrorActivity(SmsRenderErrorActivity activity);
     
     public void onSmsInboundActivity(SmsInboundActivity activity);
+    
+    public void onRequestActivity(RequestActivity activity);
     
 }

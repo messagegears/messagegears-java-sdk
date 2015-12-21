@@ -23,6 +23,7 @@ import com.messagegears.sdk.v3_1.InboundEmailActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
+import com.messagegears.sdk.v3_1.RequestActivity;
 import com.messagegears.sdk.v3_1.SmsDeliveredActivity;
 import com.messagegears.sdk.v3_1.SmsDeliveryFailureActivity;
 import com.messagegears.sdk.v3_1.SmsInboundActivity;
@@ -191,6 +192,13 @@ public class MessageGearsAwsQueuePoller {
             for (SmsInboundActivity smsInboundActivity : items.getSmsInboundActivity()) {
                 LOGGER.info("Received an smsInboundActivity message: " + smsInboundActivity.getSmsBody());
                 listener.onSmsInboundActivity(smsInboundActivity);
+            }       
+        }
+        
+        if(items.getRequestActivity() != null) {
+            for (RequestActivity requestActivity : items.getRequestActivity()) {
+                LOGGER.info("Received an requestActivity message belonging to job: " + requestActivity.getRequestId());
+                listener.onRequestActivity(requestActivity);
             }       
         }
     }

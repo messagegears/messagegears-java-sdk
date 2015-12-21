@@ -297,6 +297,7 @@
                 <xsd:element ref="mg:SmsDeliveryFailureActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:SmsRenderErrorActivity" minOccurs="0" maxOccurs="unbounded" />
                 <xsd:element ref="mg:SmsInboundActivity" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element ref="mg:RequestActivity" minOccurs="0" maxOccurs="unbounded" />
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -348,6 +349,23 @@
                 <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
                 <xsd:element name="Microsite" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
                 <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="RequestActivity">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="AccountId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="RequestId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ActivityId" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="CorrelationId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="JobCategory" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="CampaignId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="CampaignVersion" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="NotificationEmailAddress" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="RecipientXml" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="ContextXml" type="xsd:string" minOccurs="0" maxOccurs="1" />
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

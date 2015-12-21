@@ -21,6 +21,7 @@ import com.messagegears.sdk.v3_1.InboundEmailActivity;
 import com.messagegears.sdk.v3_1.JobErrorActivity;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
+import com.messagegears.sdk.v3_1.RequestActivity;
 import com.messagegears.sdk.v3_1.SmsDeliveredActivity;
 import com.messagegears.sdk.v3_1.SmsDeliveryFailureActivity;
 import com.messagegears.sdk.v3_1.SmsInboundActivity;
@@ -148,6 +149,8 @@ public class ActivityFileSaxHandler extends DefaultHandler {
                 listener.onSmsInboundActivity(SmsInboundActivity.unmarshal(reader));
             } else if (activityType.equals(ActivityType.SMS_RENDER_ERROR_ACTIVITY)) {
                 listener.onSmsRenderErrorActivity(SmsRenderErrorActivity.unmarshal(reader));
+            } else if (activityType.equals(ActivityType.REQUEST_ACTIVITY)) {
+                listener.onRequestActivity(RequestActivity.unmarshal(reader));
             } else {
                 throw new MessageGearsClientException ("Unrecognized ActivityType: " + activityType);
             }

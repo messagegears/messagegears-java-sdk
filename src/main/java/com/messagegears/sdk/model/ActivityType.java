@@ -13,7 +13,8 @@ public enum ActivityType {
     SMS_DELIVERED_ACTIVITY("SmsDeliveryActivity"),
     SMS_DELIVERY_FAILURE_ACTIVITY("SmsDeliveryFailureActivity"),
     SMS_RENDER_ERROR_ACTIVITY("SmsRenderErrorActivity"),
-    SMS_INBOUND_ACTIVITY("SmsInboundActivity");
+    SMS_INBOUND_ACTIVITY("SmsInboundActivity"),
+    REQUEST_ACTIVITY("RequestActivity");
     
     private String xmlTag;
     
