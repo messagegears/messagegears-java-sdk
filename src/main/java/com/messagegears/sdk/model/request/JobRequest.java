@@ -6,6 +6,7 @@ import java.util.List;
 import com.messagegears.sdk.model.Attachment;
 import com.messagegears.sdk.model.Header;
 import com.messagegears.sdk.model.TemplateLanguage;
+import com.messagegears.sdk.model.TemplateLibrary;
 
 public abstract class JobRequest extends BaseJobRequest {
 
@@ -27,6 +28,7 @@ public abstract class JobRequest extends BaseJobRequest {
     private boolean unsubscribeHeader = false;
     private List<Header> headers = new ArrayList<Header>();
     private String templateLibrary;
+    private List<TemplateLibrary> templateLibraries;
     private String jobCategory;
 
     /**
@@ -253,12 +255,22 @@ public abstract class JobRequest extends BaseJobRequest {
         this.headers = headers;
     }
 
+    @Deprecated
     public String getTemplateLibrary() {
         return templateLibrary;
     }
 
+    @Deprecated
     public void setTemplateLibrary(String templateLibrary) {
         this.templateLibrary = templateLibrary;
+    }
+
+    public List<TemplateLibrary> getTemplateLibraries() {
+        return templateLibraries;
+    }
+
+    public void setTemplateLibraries(List<TemplateLibrary> templateLibraries) {
+        this.templateLibraries = templateLibraries;
     }
 
     /**

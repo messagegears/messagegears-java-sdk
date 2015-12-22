@@ -26,6 +26,7 @@ import com.messagegears.sdk.exception.MessageGearsClientException;
 import com.messagegears.sdk.exception.MessageGearsServiceException;
 import com.messagegears.sdk.model.Attachment;
 import com.messagegears.sdk.model.Header;
+import com.messagegears.sdk.model.TemplateLibrary;
 import com.messagegears.sdk.model.request.AccountActivityRequest;
 import com.messagegears.sdk.model.request.AccountSummaryRequest;
 import com.messagegears.sdk.model.request.BaseJobRequest;
@@ -212,8 +213,6 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
         // Add the recipient xml to the request (single recipient only).
         addParam(params, RestRequestParam.RECIPIENT_XML, request.getRecipientXml());
-        // Add the template library inline
-        addParam(params, RestRequestParam.TEMPLATE_LIBRARY, request.getTemplateLibrary());
         // Add the standard job request params
         addJobRequestParams(params, request);
         // Submit the request
@@ -243,8 +242,6 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.SUPRESSION_LIST_CSV_URL, request.getSuppressionCsvUrl());
         // Add optional context xml data 
         addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
-        // Add the template library inline
-        addParam(params, RestRequestParam.TEMPLATE_LIBRARY, request.getTemplateLibrary());
         // Add the standard job request params
         addJobRequestParams(params, request);
         // Submit the request
@@ -315,8 +312,6 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.RECIPIENT_XML, request.getRecipientXml());
         // Add optional context xml data
         addParam(params, RestRequestParam.CONTEXT_DATA_XML, request.getContextDataXml());
-        // Add the template library inline
-        addParam(params, RestRequestParam.TEMPLATE_LIBRARY, request.getTemplateLibrary());
 
         // Submit the request
         String xmlResponse = invoke(params);
@@ -570,9 +565,11 @@ public class MessageGearsClient {
         addParam(params, RestRequestParam.CUSTOM_TRACKING_DOMAIN, request.getCustomTrackingDomain());
         addParam(params, RestRequestParam.UNSUBSCRIBE_HEADER, request.isUnsubscribeHeader());
         addParam(params, RestRequestParam.JOB_CATEGORY, request.getJobCategory());
+        addParam(params, RestRequestParam.TEMPLATE_LIBRARY, request.getTemplateLibrary());
 
         addAttachments(params, request.getAttachments());
         addHeaders(params, request.getHeaders());
+        addTemplateLibraries(params, request.getTemplateLibraries());
     }
     
     private void addBaseJobRequestParams(List<NameValuePair> params, BaseJobRequest request) {     
@@ -665,6 +662,13 @@ public class MessageGearsClient {
         for (int i = 0; i < headers.size(); i++) {
             addParam(params, RestRequestParam.HEADER_NAME.getParamName() + "." + Integer.toString(i + 1), headers.get(i).getName());
             addParam(params, RestRequestParam.HEADER_VALUE.getParamName() + "." + Integer.toString(i + 1), headers.get(i).getValue());
+        }
+    }
+
+    private void addTemplateLibraries(List<NameValuePair> params, List<TemplateLibrary> libraries) {
+        for (int i = 0; i < libraries.size(); i++) {
+            addParam(params, RestRequestParam.TEMPLATE_LIBRARY_NAME.getParamName() + "." + Integer.toString(i + 1), libraries.get(i).getName());
+            addParam(params, RestRequestParam.TEMPLATE_LIBRARY_CONTENT.getParamName() + "." + Integer.toString(i + 1), libraries.get(i).getContent());
         }
     }
 }
