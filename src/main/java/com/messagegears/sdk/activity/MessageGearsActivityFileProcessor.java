@@ -13,8 +13,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import com.messagegears.sdk.MessageGearsErrorHandler;
 import com.messagegears.sdk.MessageGearsListener;
 import com.messagegears.sdk.exception.MessageGearsClientException;
+import com.messagegears.sdk.exception.MessageGearsDefaultErrorHandler;
 import com.messagegears.sdk.model.ActivityType;
 
 /**
@@ -30,14 +32,29 @@ public class MessageGearsActivityFileProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(MessageGearsActivityFileProcessor.class);
 
     private MessageGearsListener listener;
+    private MessageGearsErrorHandler errorHandler;
     
     /**
      * Constructor.
+     * 
+     * This method uses the @MessageGearsDefaultErrorHandler.
      * 
      * @param listener The @MessageGearsListener to invoke with each activity item parsed.
      */
     public MessageGearsActivityFileProcessor (MessageGearsListener listener) {
         this.listener = listener;
+        this.errorHandler = new MessageGearsDefaultErrorHandler();
+    }
+    
+    /**
+     * Constructor.
+     * 
+     * @param listener The @MessageGearsListener to invoke with each activity item parsed.
+     * @param errorHandler The @MessageGearsErrorHandler to use when errors are encountered.
+     */
+    public MessageGearsActivityFileProcessor (MessageGearsListener listener, MessageGearsErrorHandler errorHandler) {
+        this.listener = listener;
+        this.errorHandler = errorHandler;
     }
     
     /**
@@ -50,7 +67,7 @@ public class MessageGearsActivityFileProcessor {
     public void process(InputStream inputStream, ActivityType activityType) {
         try {
             // Create a new handler
-            ActivityFileSaxHandler saxHandler = new ActivityFileSaxHandler(listener, activityType);
+            ActivityFileSaxHandler saxHandler = new ActivityFileSaxHandler(listener, errorHandler, activityType);
             // Parse the list
             SAXParserFactory factory = SAXParserFactory.newInstance();
             // Turn on validation

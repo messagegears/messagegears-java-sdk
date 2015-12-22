@@ -13,8 +13,10 @@ import com.amazonaws.services.sqs.model.DeleteMessageRequest;
 import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
 import com.amazonaws.services.sqs.model.ReceiveMessageResult;
+import com.messagegears.sdk.MessageGearsErrorHandler;
 import com.messagegears.sdk.MessageGearsListener;
 import com.messagegears.sdk.exception.MessageGearsClientException;
+import com.messagegears.sdk.exception.MessageGearsDefaultErrorHandler;
 import com.messagegears.sdk.v3_1.ActivityItems;
 import com.messagegears.sdk.v3_1.BouncedMessageActivity;
 import com.messagegears.sdk.v3_1.ClickActivity;
@@ -41,12 +43,20 @@ public class MessageGearsAwsQueuePoller {
     MessageGearsAwsProperties mgAwsProperties;
     MessageGearsAwsClient client;
     MessageGearsListener listener;
+    MessageGearsErrorHandler errorHandler;
 
-    public MessageGearsAwsQueuePoller(MessageGearsAwsProperties mgAwsProperties, 
-                                      MessageGearsListener listener) {
+    public MessageGearsAwsQueuePoller(MessageGearsAwsProperties mgAwsProperties, MessageGearsListener listener) {
         this.mgAwsProperties = mgAwsProperties;
         client = new MessageGearsAwsClient(mgAwsProperties);
         this.listener = listener;
+        this.errorHandler = new MessageGearsDefaultErrorHandler();
+    }
+    
+    public MessageGearsAwsQueuePoller(MessageGearsAwsProperties mgAwsProperties, MessageGearsErrorHandler errorHandler, MessageGearsListener listener) {
+		this.mgAwsProperties = mgAwsProperties;
+		client = new MessageGearsAwsClient(mgAwsProperties);
+		this.listener = listener;
+		this.errorHandler = errorHandler;
     }
     
     public void stop() {
@@ -67,8 +77,14 @@ public class MessageGearsAwsQueuePoller {
             if (messages != null && (messages.size() > 0)) {
                 for (Message message : messages) {
                     LOGGER.debug("Found item on queue: " + message.getBody());
-                    ActivityItems items = getActivityItems(message);
-                    dispatchItems(items);
+                    try {
+                    	ActivityItems items = getActivityItems(message);
+                    	dispatchItems(items);
+                    } catch (MessageGearsClientException mgce) {
+                    	LOGGER.warn("Unable to process message: " + mgce.getMessage());
+                    	LOGGER.debug(mgce.getMessage(), mgce);
+                    	errorHandler.handleUnprocessedMessage(message.getBody());
+                    }
                     deleteMessage(message);
                 }
             } else {

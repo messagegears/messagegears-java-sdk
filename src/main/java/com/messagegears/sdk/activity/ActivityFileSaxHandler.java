@@ -11,8 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.messagegears.sdk.MessageGearsErrorHandler;
 import com.messagegears.sdk.MessageGearsListener;
-import com.messagegears.sdk.exception.MessageGearsClientException;
+import com.messagegears.sdk.exception.MessageGearsDefaultErrorHandler;
 import com.messagegears.sdk.model.ActivityType;
 import com.messagegears.sdk.v3_1.BouncedMessageActivity;
 import com.messagegears.sdk.v3_1.ClickActivity;
@@ -47,6 +48,7 @@ public class ActivityFileSaxHandler extends DefaultHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(ActivityFileSaxHandler.class);
 
     private MessageGearsListener listener;
+    private MessageGearsErrorHandler errorHandler;
     private ActivityType activityType;
     private String activityXml = "";
     private boolean inActivityItems = false;
@@ -55,6 +57,8 @@ public class ActivityFileSaxHandler extends DefaultHandler {
     /**
      * Constructor.
      * 
+     * This method uses the @MessageGearsDefaultErrorHandler to log errors processing events.
+     * 
      * @param listener The @MessageGearsListener to invoke with each item parsed.
      * @param activityType The @ActivityType to expect. Currently this is limited to 
      * a single activity per InputStream for efficiency, but this limitation may be
@@ -62,6 +66,22 @@ public class ActivityFileSaxHandler extends DefaultHandler {
      */
     public ActivityFileSaxHandler(MessageGearsListener listener, ActivityType activityType) {
         this.listener = listener;
+        this.errorHandler = new MessageGearsDefaultErrorHandler();
+        this.activityType = activityType;
+    }
+    
+    /**
+     * Constructor.
+     * 
+     * @param listener The @MessageGearsListener to invoke with each item parsed.
+     * @param errorHandler The @MessageGearsErrorHandler used to handle errors.
+     * @param activityType The @ActivityType to expect. Currently this is limited to 
+     * a single activity per InputStream for efficiency, but this limitation may be
+     * removed if needed in the future.
+     */
+    public ActivityFileSaxHandler(MessageGearsListener listener, MessageGearsErrorHandler errorHandler, ActivityType activityType) {
+        this.listener = listener;
+        this.errorHandler = errorHandler;
         this.activityType = activityType;
     }
     
@@ -152,14 +172,15 @@ public class ActivityFileSaxHandler extends DefaultHandler {
             } else if (activityType.equals(ActivityType.REQUEST_ACTIVITY)) {
                 listener.onRequestActivity(RequestActivity.unmarshal(reader));
             } else {
-                throw new MessageGearsClientException ("Unrecognized ActivityType: " + activityType);
+            	LOGGER.warn("Unrecognized ActivityType: " + activityType);
+            	errorHandler.handleUnprocessedMessage(xml);
             }
         } catch (MarshalException me) {
             LOGGER.debug(me.getMessage(), me);
-            throw new MessageGearsClientException ("Failed to unmarshal string: " + xml);
+            errorHandler.handleUnprocessedMessage(xml);
         } catch (ValidationException ve) {
             LOGGER.debug(ve.getMessage(), ve);
-            throw new MessageGearsClientException ("Failed to unmarshal string: " + xml);
+            errorHandler.handleUnprocessedMessage(xml);
         }
     }
 }
