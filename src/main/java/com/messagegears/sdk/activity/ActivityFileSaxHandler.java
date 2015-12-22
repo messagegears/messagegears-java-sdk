@@ -177,10 +177,10 @@ public class ActivityFileSaxHandler extends DefaultHandler {
             }
         } catch (MarshalException me) {
             LOGGER.debug(me.getMessage(), me);
-            errorHandler.handleUnprocessedMessage(xml);
+            errorHandler.handleUnprocessedMessage(xml, me);
         } catch (ValidationException ve) {
             LOGGER.debug(ve.getMessage(), ve);
-            errorHandler.handleUnprocessedMessage(xml);
+            errorHandler.handleUnprocessedMessage(xml, ve);
         }
     }
 }

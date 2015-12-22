@@ -83,7 +83,7 @@ public class MessageGearsAwsQueuePoller {
                     } catch (MessageGearsClientException mgce) {
                     	LOGGER.warn("Unable to process message: " + mgce.getMessage());
                     	LOGGER.debug(mgce.getMessage(), mgce);
-                    	errorHandler.handleUnprocessedMessage(message.getBody());
+                    	errorHandler.handleUnprocessedMessage(message.getBody(), mgce);
                     }
                     deleteMessage(message);
                 }
