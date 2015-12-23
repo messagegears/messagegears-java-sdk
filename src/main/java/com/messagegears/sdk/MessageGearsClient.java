@@ -666,9 +666,11 @@ public class MessageGearsClient {
     }
 
     private void addTemplateLibraries(List<NameValuePair> params, List<TemplateLibrary> libraries) {
-        for (int i = 0; i < libraries.size(); i++) {
-            addParam(params, RestRequestParam.TEMPLATE_LIBRARY_NAME.getParamName() + "." + Integer.toString(i + 1), libraries.get(i).getName());
-            addParam(params, RestRequestParam.TEMPLATE_LIBRARY_CONTENT.getParamName() + "." + Integer.toString(i + 1), libraries.get(i).getContent());
+        if (libraries != null) {
+            for (int i = 0; i < libraries.size(); i++) {
+                addParam(params, RestRequestParam.TEMPLATE_LIBRARY_NAME.getParamName() + "." + Integer.toString(i + 1), libraries.get(i).getName());
+                addParam(params, RestRequestParam.TEMPLATE_LIBRARY_CONTENT.getParamName() + "." + Integer.toString(i + 1), libraries.get(i).getContent());
+            }
         }
     }
 }
