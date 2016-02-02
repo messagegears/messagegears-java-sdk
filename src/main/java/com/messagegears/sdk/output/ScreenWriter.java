@@ -15,6 +15,7 @@ import com.messagegears.sdk.v3_1.MessagePreviewResponse;
 import com.messagegears.sdk.v3_1.OpenActivity;
 import com.messagegears.sdk.v3_1.RenderError;
 import com.messagegears.sdk.v3_1.RenderErrorActivity;
+import com.messagegears.sdk.v3_1.RequestActivity;
 import com.messagegears.sdk.v3_1.RequestError;
 import com.messagegears.sdk.v3_1.RequestErrors;
 import com.messagegears.sdk.v3_1.SpamAssassinRule;
@@ -147,6 +148,19 @@ public class ScreenWriter {
         System.out.println("getContentId(): " + activity.getContentId());
         System.out.println("getMailFrom(): " + activity.getMailFrom());
         System.out.println("getSubject(): " + activity.getSubject());
+        System.out.println();
+    }
+    
+    public static void print(RequestActivity activity) {
+        System.out.println("***** Request Activity Event Received");
+        System.out.println("getActivityId(): " + activity.getAccountId());
+        System.out.println("getActivityId(): " + activity.getActivityId());
+        System.out.println("getActivityId(): " + activity.getCampaignId());
+        System.out.println("getActivityId(): " + activity.getCampaignVersion());
+        System.out.println("getCorrelationId(): " + activity.getCorrelationId());
+        System.out.println("getCorrelationId(): " + activity.getJobCategory());
+        System.out.println("getRequestId(): " + activity.getRequestId());
+        System.out.println("getTimestamp(): " + activity.getTimestamp());
         System.out.println();
     }
     
