@@ -175,7 +175,7 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk</artifactId>
-            <version>1.2.4</version>
+            <version>1.11.168</version>
             <exclusions>
             	<exclusion>
             		<artifactId>commons-logging</artifactId>
